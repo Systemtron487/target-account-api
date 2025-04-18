@@ -1,0 +1,29 @@
+@baseUrl = http://localhost:3000
+@contentType = application/json
+
+### 1. Login (Get JWT Token)
+POST {{baseUrl}}/login
+Content-Type: {{contentType}}
+
+{
+  "username": "user1",
+  "password": "pass123"
+}
+
+### After running the login request, copy the token from the response
+### and paste it here (replace YOUR_TOKEN_HERE):
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNzQ0OTY2MjE1LCJleHAiOjE3NDQ5Njk4MTV9.nIkGtUzmrvHhmHL4_fpgx1NSwtiAWNOkHU9VnZm3ndg
+
+### 2. Fetch All Companies (Requires Auth)
+GET {{baseUrl}}/accounts
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+### 3. Update Company Status (Set as Target)
+POST {{baseUrl}}/accounts/1/status
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+
+{
+  "status": "Target"
+}
